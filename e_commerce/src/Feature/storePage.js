@@ -28,6 +28,7 @@ class storePage extends Component
   
   componentDidMount(){
     this.getMyLocation();
+
     
   }
 
@@ -51,19 +52,14 @@ class storePage extends Component
           {this.setState({values})}
         }
       )
-      shoppingStores.getDetails
-      (
-        {
-          placeId : this.state.values.place_id
-        },
-        (directions) => {
-          {this.setState({directions})}
-        }
-      )
     }
+    console.log("ffff", this.state.values.name);
+
+
   }
 
-  
+
+
 
   getMyLocation() {
       const location = window.navigator && window.navigator.geolocation;
@@ -94,6 +90,7 @@ class storePage extends Component
       // console.log("Lat ", this.state.userLat);
       // console.log("Long ", this.state.userLong);
       console.log("values are= ", this.state.values);
+      console.log("array issss: ", shopsArray);
       // console.log("latitude : ", this.state.directions);
       // console.log("branches : ", this.props.brandName);
 
@@ -140,12 +137,23 @@ class storePage extends Component
         window.open(`https://www.google.co.in/maps/search/`+ addr);
       }
 
+      // let filtertrial = [];
+
+      // function filteringOut() {
+      //   this.state.values.forEach(function (x) {
+      //     if(x.vicinity == shopsArray.address)
+      //     {
+      //       filtertrial.push(x);
+      //     }
+      //   })
+      // }
 
 
 
-      let storesList = this.state.values
-        .filter(placename => placename.name != shopsArray.name)
-        .filter(placeaddr => placeaddr.vicinity != shopsArray.address)
+
+
+      let storesList = this.state.values && this.state.values && this.state.values
+      .filter(xyz => (xyz.vicinity === shopsArray.address))
         .map(storeInfo=> {
           return (
             <div>
@@ -164,20 +172,15 @@ class storePage extends Component
           )
         })
 
+        console.log("arefaef",this.state.values.name);
+
     
       return (
         <div className={styles.storesDisplay}>
             <h1>Nearest stores listed according to your location: </h1>
             <br></br>
-            <div className={styles.parentDiv}>
             <div className={styles.listDiv}>
               {storesList}
-            </div>
-            {/* <div className={styles.mapDiv}>
-              <h1>Map</h1>
-
-            </div> */}
-
             </div>
         </div>
       )
