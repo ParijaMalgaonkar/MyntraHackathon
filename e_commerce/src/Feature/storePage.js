@@ -45,7 +45,7 @@ class storePage extends Component
           name: this.props.location.state,
           keyword: this.props.location.state,
           type: 'clothing_store',
-          radius: 10000
+          radius: 20000
           // openNow: true
         }, 
         (values) => {
@@ -162,12 +162,25 @@ class storePage extends Component
         return flag;
       }
 
-      let newList = this.state.values.filter(isShopInList);
-      console.log("NEWLIST", newList);
+      function isnameInList(abc) {
+        let flag = false;
+        shopsArray.forEach((shop) => {
+          if(abc.name === shop.name){
+            console.log("Name Matched");
+            flag = true;
+            
+          }
+        })
+        return flag;
+      }
+
+      // let newList = this.state.values.filter(isShopInList);
+      // console.log("NEWLIST", newList);
 
 
       let storesList = this.state.values && this.state.values && this.state.values
-      // .filter(isShopInList)
+      .filter(isnameInList)
+      .filter(isShopInList)
         .map(storeInfo=> {
           return (
             <div>
