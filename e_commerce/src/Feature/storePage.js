@@ -160,6 +160,9 @@ class storePage extends Component
         return false;
       }
 
+      let newList = this.state.values.filter(isShopInList);
+      console.log("NEWLIST", newList);
+
 
       let storesList = this.state.values && this.state.values && this.state.values
       .filter(isShopInList)
