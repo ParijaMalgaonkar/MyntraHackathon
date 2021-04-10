@@ -67,4 +67,3 @@ const shopsArray =
 ];
 
 export default shopsArray;
-
