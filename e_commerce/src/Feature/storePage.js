@@ -165,7 +165,7 @@ class storePage extends Component
 
 
       let storesList = this.state.values && this.state.values && this.state.values
-      .filter(isShopInList)
+      // .filter(isShopInList)
         .map(storeInfo=> {
           return (
             <div>
