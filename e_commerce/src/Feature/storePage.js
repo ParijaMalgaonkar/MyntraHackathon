@@ -153,7 +153,14 @@ class storePage extends Component
 
 
       let storesList = this.state.values && this.state.values && this.state.values
-      .filter(xyz => (xyz.vicinity === shopsArray.address))
+      .filter((xyz) => {
+        shopsArray.forEach((shop) => {
+          if(xyz.vicinity === shop.address){
+            console.log("Address Matched");
+          }
+        })
+        return false;
+      })
         .map(storeInfo=> {
           return (
             <div>
