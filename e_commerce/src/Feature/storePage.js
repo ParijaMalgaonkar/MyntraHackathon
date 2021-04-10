@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import styles from './storePage.module.css'
-import data from './shops.json'
+// import data from './shops'
 
 import MessageBox from '../components/MessageBox'
 // import Branches from '../Airtable/branches'
@@ -21,7 +21,8 @@ class storePage extends Component
       {
         userLat: null,
         userLong: null,
-        values: []
+        values: [],
+        directions: []
       };
   }
 
@@ -36,19 +37,28 @@ class storePage extends Component
     if(this.state.userLat && global.google && this.state.values.length == 0)
     {
       
-      const shops = new global.google.maps.places.PlacesService(document.createElement('div')) 
-      shops.nearbySearch
+      const shoppingStores = new global.google.maps.places.PlacesService(document.createElement('div')) 
+      shoppingStores.nearbySearch
       (
         {
           location: new global.google.maps.LatLng(this.state.userLat, this.state.userLong),
           name: this.props.location.state,
           keyword: this.props.location.state,
           type: 'clothing_store',
-          radius: 10000,
+          radius: 10000
           // openNow: true
         }, 
         (values) => {
           {this.setState({values})}
+        }
+      )
+      shoppingStores.getDetails
+      (
+        {
+          placeId : this.state.values.place_id
+        },
+        (directions) => {
+          {this.setState({directions})}
         }
       )
     }
@@ -85,6 +95,7 @@ class storePage extends Component
       // console.log("Lat ", this.state.userLat);
       // console.log("Long ", this.state.userLong);
       console.log("values are= ", this.state.values);
+      // console.log("latitude : ", this.state.directions);
       // console.log("branches : ", this.props.brandName);
 
       // const slotURL = null;
@@ -126,6 +137,10 @@ class storePage extends Component
         }
       }
 
+      function getDirections(addr) {
+        window.open(`https://www.google.co.in/maps/search/`+ addr);
+      }
+
 
 
 
@@ -135,9 +150,9 @@ class storePage extends Component
         //     return place.name != shops.name;
         // })
 
-        .filter(addr => {
-          return addr.vicinity != data.address;
-      })
+      //   .filter(addr => {
+      //     return addr.vicinity != data.address;
+      // })
 
         .map(storeInfo=> {
           return (
@@ -150,7 +165,7 @@ class storePage extends Component
               {/* <h3>{storeInfo.open_now}</h3> */}
               <div className={styles.buttonArea}>
               <button className={styles.slotButton} onClick={() => getAirtable(storeInfo.name)}>Book Slots</button>
-              <button className={styles.directionButton}>Get Directions</button>
+              <button className={styles.directionButton} onClick={() => getDirections(storeInfo.vicinity)}>Get Directions</button>
               </div>
               </ul>
             </div>
@@ -166,10 +181,10 @@ class storePage extends Component
             <div className={styles.listDiv}>
               {storesList}
             </div>
-            <div className={styles.mapDiv}>
+            {/* <div className={styles.mapDiv}>
               <h1>Map</h1>
 
-            </div>
+            </div> */}
 
             </div>
         </div>
