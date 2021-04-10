@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import styles from './storePage.module.css'
-// import data from './shops'
+import shopsArray from "./shopsArray"
 
 import MessageBox from '../components/MessageBox'
 // import Branches from '../Airtable/branches'
@@ -21,8 +21,7 @@ class storePage extends Component
       {
         userLat: null,
         userLong: null,
-        values: [],
-        directions: []
+        values: []
       };
   }
 
@@ -144,16 +143,9 @@ class storePage extends Component
 
 
 
-
       let storesList = this.state.values
-        //   .filter(place => {
-        //     return place.name != shops.name;
-        // })
-
-      //   .filter(addr => {
-      //     return addr.vicinity != data.address;
-      // })
-
+        .filter(placename => placename.name != shopsArray.name)
+        .filter(placeaddr => placeaddr.vicinity != shopsArray.address)
         .map(storeInfo=> {
           return (
             <div>
@@ -170,7 +162,7 @@ class storePage extends Component
               </ul>
             </div>
           )
-      })
+        })
 
     
       return (

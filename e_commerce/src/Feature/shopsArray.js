@@ -1,3 +1,5 @@
+
+const shopsArray = 
 [
     {
       "id": 1,
@@ -12,5 +14,7 @@
         "name": "adidas",
         "address": "Shop No. 225, 2nd Floor, Infiniti Mall, New Link Rd, Mindspace, Malad West, Mumbai"
     }
-]
+];
+
+export default shopsArray;
 
