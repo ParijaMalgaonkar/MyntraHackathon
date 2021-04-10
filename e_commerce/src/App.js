@@ -7,7 +7,6 @@ import RegisterScreen from './Screens/RegisterScreen'
 import Navbar from './components/Navbar'
 import Location from './components/Location'
 import storePage from './Feature/storePage'
-import Branches from './Airtable/branches'
 
  
 
@@ -18,7 +17,7 @@ function App() {
         <Navbar />
         <Switch>
             <Route path="/product/:id" component={ProductScreen}/>
-            <Route path="/location" component={Branches}/>
+            <Route path="/location" component={storePage}/>
             <Route path="/" exact={true} component={HomeScreen}/>
             <Route path="/cart/:id?" component={CartScreen} />
             <Route path="/signin" component={SigninScreen} />

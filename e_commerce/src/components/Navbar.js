@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily:'Helvetica Neue'
   },
   navbar: {
-    background:'#64b5f6'
+    background:'#e72744'
   },
   font: {
       fontSize: '15px'
@@ -65,7 +65,7 @@ function Navbar() {
             <MenuIcon style={{ fontSize: 35 }}  />
           </IconButton>
           <Typography variant="subtitle" className={classes.title}>
-            <Link style={{textDecoration: 'none', color: 'white'}} to="/">Shopify</Link>
+            <Link style={{textDecoration: 'none', color: 'white'}} to="/">SenpaiStore</Link>
           </Typography>
           {
             userInfo ? 

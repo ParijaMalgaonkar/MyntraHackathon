@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
-import './storePage.css'
+import styles from './storePage.module.css'
+import data from './shops.json'
+
 import MessageBox from '../components/MessageBox'
 // import Branches from '../Airtable/branches'
 
@@ -40,13 +42,13 @@ class storePage extends Component
         {
           location: new global.google.maps.LatLng(this.state.userLat, this.state.userLong),
           name: this.props.location.state,
-          // keyword: this.props.location.state,
+          keyword: this.props.location.state,
           type: 'clothing_store',
-          radius: 7000,
-          openNow: true
+          radius: 10000,
+          // openNow: true
         }, 
         (values) => {
-          {this.setState({values}) }
+          {this.setState({values})}
         }
       )
     }
@@ -80,10 +82,10 @@ class storePage extends Component
       // const { brand } = this.props.location.state;
       // console.log("brand name : ", brand);
 
-      console.log("Lat ", this.state.userLat);
-      console.log("Long ", this.state.userLong);
+      // console.log("Lat ", this.state.userLat);
+      // console.log("Long ", this.state.userLong);
       console.log("values are= ", this.state.values);
-      console.log("branches : ", this.props.brandName);
+      // console.log("branches : ", this.props.brandName);
 
       // const slotURL = null;
 
@@ -109,7 +111,7 @@ class storePage extends Component
           window.open('https://airtable.com/embed/shrgLpRouLnzrzHIQ?','_blank');
         }
 
-        else if(name === 'vero moda') {
+        else if(name === 'veromoda') {
           window.open('https://airtable.com/embed/shrftv42WT8doeg6S?','_blank');
         }
 
@@ -129,20 +131,27 @@ class storePage extends Component
 
 
       let storesList = this.state.values
-          // .filter(place => {
-          //   return place.vicinity === "Near CritiCare Hospital, 45, Teli Gali, Andheri East, Mumbai";
+        //   .filter(place => {
+        //     return place.name != shops.name;
         // })
+
+        .filter(addr => {
+          return addr.vicinity != data.address;
+      })
 
         .map(storeInfo=> {
           return (
-            <div className="storeDetailsCard">
-              <ul>
-              <h2>{storeInfo.name}</h2>
+            <div>
+              <ul className={styles.storeDetailsCard}>
+              <h2 className={styles.storeName}>{storeInfo.name}</h2>
               <br />
-              <h3>{storeInfo.vicinity}</h3>
+              <h3 className={styles.storeAddr}>{storeInfo.vicinity}</h3>
               <br />
-              <h3>{storeInfo.open_now}</h3>
-              <button onClick={() => getAirtable(storeInfo.name)}>Book Slots</button>
+              {/* <h3>{storeInfo.open_now}</h3> */}
+              <div className={styles.buttonArea}>
+              <button className={styles.slotButton} onClick={() => getAirtable(storeInfo.name)}>Book Slots</button>
+              <button className={styles.directionButton}>Get Directions</button>
+              </div>
               </ul>
             </div>
           )
@@ -150,11 +159,18 @@ class storePage extends Component
 
     
       return (
-        <div className="storesDisplay">
+        <div className={styles.storesDisplay}>
             <h1>Nearest stores listed according to your location: </h1>
             <br></br>
-            <div>
+            <div className={styles.parentDiv}>
+            <div className={styles.listDiv}>
               {storesList}
+            </div>
+            <div className={styles.mapDiv}>
+              <h1>Map</h1>
+
+            </div>
+
             </div>
         </div>
       )

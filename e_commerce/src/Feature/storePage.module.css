@@ -1,0 +1,104 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Raleway:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
+
+
+.parentDiv {
+    width : 100%;
+    display: flex;
+}
+
+.listDiv {
+    width: 60%;
+    padding: 10px;
+
+}
+
+
+
+.storeDetailsCard {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top : 20px;
+    width: 90%;
+    height: auto;
+
+}
+
+.storeName {
+    font-size: 30px;
+    color: #e72744;
+    font-weight: 600;
+
+}
+
+.storeAddr {
+    margin-top: -30px;
+    font-size: 20px;
+    color: #0000008a;
+    font-weight: 400;
+
+}
+
+
+
+.storesDisplay {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.slotButton {
+    padding : 20px;
+    background :#e72744;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    width : 300px;
+    color : white;
+    border-radius: 5px;
+    border : none;
+    font-size : 18px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+}
+
+
+.directionButton {
+    margin-left : 30px;
+    padding : 20px;
+    background : white;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    width : 300px;
+    color :  #e72744;
+    border-radius: 5px;
+    border : 2px solid #e72744;
+    font-size : 18px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
+}
+
+
+.slotButton:hover, .directionButton:hover {
+    transform: scale(1.1);
+    transition: all ease 0.3s;
+    background: #db1d39;
+    color: white;
+    border: none;
+}
+
+.buttonArea {
+    display : flex;
+
+}
+
+
+
